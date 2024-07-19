@@ -19,8 +19,8 @@ public class Program
                 var cubes = items.AsParallel().AsOrdered().WithCancellation(token).WithDegreeOfParallelism(Convert.ToInt32(state)).Select(map).ToArray();
                 return cubes;
             }, cancellationToken: token, state: degreeOfParallelism);
-            int[] result = await task;
-            Console.WriteLine(string.Join(',',result));
+            int[] cubes = await task;
+            Console.WriteLine(string.Join(',' , cubes));
         }
         catch (OperationCanceledException ex)
         {
